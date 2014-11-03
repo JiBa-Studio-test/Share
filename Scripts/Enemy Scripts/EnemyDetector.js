@@ -1,14 +1,14 @@
-﻿var isTriggered:boolean;
+﻿var playerDetected:boolean;
 function Start()
 {
-	isTriggered=false;
+	playerDetected=false;
 }
 function OnTriggerEnter2D(other:Collider2D)
 {
 	
 	if(other.tag=="Player")
 	{
-		isTriggered=true;
+		playerDetected=true;
 	}
 	
 }
@@ -17,7 +17,7 @@ function OnTriggerExit2D(other:Collider2D)
 	
 	if(other.tag=="Player")
 	{
-		isTriggered=false;
+		playerDetected=false;
 	}
 	
 }
