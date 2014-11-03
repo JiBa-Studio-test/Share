@@ -18,10 +18,10 @@ function SetSpeed()
 {
 	if(enemyNumber<=5)
 	{
-		speed=2;
+		speed=0.5;
 	}
 	else
 	{
-		speed=2.0*Mathf.Pow(0.6,(enemyNumber-5)/2);
+		speed=0.5*Mathf.Pow(0.6,(enemyNumber-5)/2);
 	}
 }
