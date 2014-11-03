@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 1169e57cdfa71514194690fc280f8382
+guid: d6a42e4be59a70f479e99b7c4ccbf05a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: testTube_0
+    21300000: brokenTube_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -44,13 +44,13 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: testTube_0
+    - name: brokenTube_0
       rect:
         serializedVersion: 2
-        x: 152
-        y: 412
-        width: 313
-        height: 312
+        x: 153
+        y: 397
+        width: 481
+        height: 149
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
