@@ -23,7 +23,7 @@ function Start ()
 	dumbTime=0.15;
 	ScaleX=transform.localScale.x;
 	movable=true;
-	//pushingForce=7;
+	pushingForce=7;
 }
 
 function FixedUpdate () 
