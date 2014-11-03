@@ -27,6 +27,10 @@ function AutomaticallyDispear()
 	{
 		DestroyFire();
 	}
+	if(Mathf.RoundToInt(screenPosition.x)<=0)
+	{
+		DestroyFire();
+	}
 }
 function DestroyFire()
 {
