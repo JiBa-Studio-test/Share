@@ -9,9 +9,21 @@ function Start()
 }
 function OnTriggerEnter2D(other:Collider2D)
 {
-	if(other.tag=="monster")
+	if(other.tag=="Enemy")
 	{
-		other.Damage(ATK);
+		if(faceToRight)
+		{
+			other.GetComponent(EnemyAction).Damage(ATK,Vector2(1,0));
+		}
+		else
+		{
+			other.GetComponent(EnemyAction).Damage(ATK,Vector2(-1,0));
+		}
+		DestroyFire();
+	}
+	if(other.tag=="EnemySpawner")
+	{
+		other.GetComponent(EnemySpawnerDamage).Damage(ATK);
 		DestroyFire();
 	}
 } 
@@ -24,6 +36,10 @@ function AutomaticallyDispear()
 {
 	var screenPosition:Vector3=Camera.main.WorldToScreenPoint(transform.position);
 	if(Mathf.RoundToInt(screenPosition.x)>=Camera.main.pixelWidth)
+	{
+		DestroyFire();
+	}
+	if(Mathf.RoundToInt(screenPosition.x)<=0)
 	{
 		DestroyFire();
 	}

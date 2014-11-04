@@ -2,39 +2,42 @@
 var distance:float;
 var isRight:boolean;
 var offset:float;
-var playerDetected:boolean;
+var isTriggered:boolean;
 var speed:int;
 var ScaleX:float;
 var detector:EnemyDetector;
-var enemyStatus:EnemyStatus; 
-var enemyAnimator: Animator;
+var enemyStatus:EnemyStatus;
+
+var dumbTime:float;
+var movable: boolean;
+
+var pushingForce:float;
+
 function Start () 
 {
 	player=GameObject.FindGameObjectWithTag("Player");
 	detector=GetComponentInChildren(EnemyDetector);
-	enemyAnimator = GetComponentInChildren(Animator);
 	enemyStatus = GetComponent(EnemyStatus);
-	//offset=0.4;
-	//speed=1;
+	offset=0.4;
+	speed=1;
+	dumbTime=0.15;
 	ScaleX=transform.localScale.x;
+	movable=true;
+	pushingForce=7;
 }
 
 function FixedUpdate () 
 {
-	if(detector.playerDetected)
+	if(movable)
 	{
-		FollowMove();
+		if(detector.isTriggered)
+		{
+			FollowMove();
+		}
 	}
-	if(!detector.playerDetected)
-	{
-		Wander();
-	}
+	DeathDetection();
 }
-
-/**
- *Follow after detecting the Player
- **/
-function FollowMove()
+function FollowMove()//following movement for enemy
 {
 	distance=player.transform.position.x-transform.position.x;
 	if(distance<-offset)
@@ -61,25 +64,59 @@ function FollowMove()
 }
 function GoLeft()
 {
-	enemyAnimator.SetBool("isRunning",true);
 	transform.localScale.x=-ScaleX;
 	transform.position+=Vector3.left*speed*Time.deltaTime;
 }
 function GoRight()
 {
-	enemyAnimator.SetBool("isRunning",true);
 	transform.localScale.x=ScaleX;
 	transform.position+=Vector3.right*speed*Time.deltaTime;
 }
-/**
- *Function Follow ends
- **/
- 
- /**
-  *Function Wander
-  **/
- function Wander()
- {
- 	enemyAnimator.SetBool("isRunning",false);
- 	//wander
- }
+
+
+
+
+
+function Damage(ATK:int,vector:Vector2)
+{
+	enemyStatus.HP-=ATK;
+	if(enemyStatus.HP<=0)
+	{
+		enemyStatus.HP=0;
+	}
+	//activate the damaged animation here
+	Stop();
+	PushEnemy(vector*pushingForce);
+}
+function DeathDetection()
+{
+	if(enemyStatus.HP<=0)
+	{
+		movable=false;
+		//activate the death animation here
+		//this method(BeKilled) could be invoked at the end of animation
+		BeKilled();
+	}
+}
+function Stop()
+{
+	movable=false;
+	StopTime(dumbTime);
+}
+
+function StopTime(time:float)
+{
+	yield WaitForSeconds(time);
+	movable=true;
+	//inactivative the damaged animation here;
+}
+function BeKilled()
+{
+	EnemyManagement.enemyManagement.enemyNumber--;
+	Destroy(gameObject);
+}
+function PushEnemy(vector:Vector2)
+{
+	rigidbody2D.AddForce(vector*pushingForce);
+}
+

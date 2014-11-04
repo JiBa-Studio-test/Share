@@ -10,7 +10,7 @@ var isAttacking:boolean;
 function Awake()
 {
 	//playerStatus=GameObject.FindGameObjectWithTag("Player").GetComponent("PlayerStatues");
-	//HP=100;
+	HP=10;
 	//ATK=5;
 	//DEF=0;
 	if(speed == 0)
