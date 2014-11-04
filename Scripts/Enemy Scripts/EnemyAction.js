@@ -2,7 +2,6 @@
 var distance:float;
 var isRight:boolean;
 var offset:float;
-var isTriggered:boolean;
 var speed:int;
 var ScaleX:float;
 var detector:EnemyDetector;
@@ -30,7 +29,7 @@ function FixedUpdate ()
 {
 	if(movable)
 	{
-		if(detector.isTriggered)
+		if(detector.playerDetected)
 		{
 			FollowMove();
 		}
