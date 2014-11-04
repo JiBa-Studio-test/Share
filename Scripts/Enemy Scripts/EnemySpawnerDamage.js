@@ -17,7 +17,7 @@ function Start()
 	spriteRenderer=GetComponent(SpriteRenderer);
 	warningColorLock=true;
 }
-function Update()
+function FixedUpdate()
 {
 	if(!warningColorLock)
 	{
