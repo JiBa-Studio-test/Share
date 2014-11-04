@@ -1,5 +1,5 @@
 ﻿static var enemyManagement: EnemyManagement;
-var speed:float;
+var spawnRate:float;
 var enemyNumber:int;
 function Awake()
 {
@@ -8,20 +8,20 @@ function Awake()
 function Start()
 {
 	enemyNumber=0;
-	SetSpeed();
+	SetSpawnRate();
 }
 function Update()
 {
-	SetSpeed();
+	SetSpawnRate();
 }
-function SetSpeed()
+function SetSpawnRate()
 {
 	if(enemyNumber<=5)
 	{
-		speed=2;
+		spawnRate=1;
 	}
 	else
 	{
-		speed=2.0*Mathf.Pow(0.6,(enemyNumber-5)/2);
+		spawnRate=1.0*Mathf.Pow(0.6,(enemyNumber-5)/2);
 	}
 }

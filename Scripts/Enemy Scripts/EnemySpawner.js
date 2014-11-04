@@ -2,7 +2,7 @@
 var spawn: boolean=true;
 var waitTime: float;
 
-function Update()
+function FixedUpdate()
 {
 	if(spawn)
 	{
@@ -17,16 +17,16 @@ function Spawn()
 	EnemyManagement.enemyManagement.enemyNumber++;
 	WaitTime();
 	spawn=false;
-	SetSpawn();
+	SetSpawnWait();
 }
-function SetSpawn()
+function SetSpawnWait()
 {
 	yield WaitForSeconds(waitTime);
 	spawn=true;
 }
 function WaitTime()
 {
-	waitTime=1.0/EnemyManagement.enemyManagement.speed;
+	waitTime=2/EnemyManagement.enemyManagement.spawnRate;
 }
 
 

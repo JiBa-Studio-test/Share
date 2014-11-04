@@ -79,7 +79,7 @@ function Broken()
 		if(!cloneFireParticle.GetComponent(ParticleSystem).isPlaying)
 		{
 			Destroy(cloneFireParticle);
-			cloneBrokenParticle=Instantiate(brokenParticle,transform.position+Vector2(1,1),transform.rotation);
+			cloneBrokenParticle=Instantiate(brokenParticle,transform.position+Vector2(1,1),transform.rotation) as GameObject;
 		}
 	}
 	if(cloneBrokenParticle!=null)

@@ -2,27 +2,25 @@
 var distance:float;
 var isRight:boolean;
 var offset:float;
-var speed:int;
 var ScaleX:float;
 var detector:EnemyDetector;
 var enemyStatus:EnemyStatus;
-
+var speed : float;
 var dumbTime:float;
 var movable: boolean;
-
 var pushingForce:float;
 
 function Start () 
 {
 	player=GameObject.FindGameObjectWithTag("Player");
 	detector=GetComponentInChildren(EnemyDetector);
-	enemyStatus = GetComponent(EnemyStatus);
-	offset=0.4;
-	speed=1;
-	dumbTime=0.15;
+	enemyStatus = GetComponent(EnemyStatus)as EnemyStatus;
+	//offset=0.4;
+	speed = enemyStatus.speed;
+	//dumbTime=0.15;
 	ScaleX=transform.localScale.x;
 	movable=true;
-	pushingForce=7;
+	//pushingForce=7;
 }
 
 function FixedUpdate () 
