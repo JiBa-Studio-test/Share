@@ -8,6 +8,9 @@ var character : Transform;
 //enable parameters
 var enableControl : boolean;//Enable the control from Input
 var enableAttack : boolean;//Enable Attack
+
+var touch : TouchReceiver;
+
 function Start () {
 	status = GetComponent("PlayerStatus") as PlayerStatus;//get status
 	
@@ -20,8 +23,8 @@ function Start () {
 			animator = child.gameObject.GetComponent("Animator") as Animator;//get animator
 		}
 	}
-	
-	//initialize enable parameters
+
+	//enable control
 	enableControl = true;
 	enableAttack = true;
 }
@@ -30,8 +33,10 @@ function FixedUpdate () {
 	/***
 	 **Character Control
 	***/
+	
 	if(enableControl)
 	{
+		
 		//running
 		if(Input.GetKey(KeyCode.LeftArrow))//run towards left
 		{
@@ -71,6 +76,7 @@ function FixedUpdate () {
 		}
 	}
 }
+
 
 //Function RUN
 function Run(towardsRight : boolean)
