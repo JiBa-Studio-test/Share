@@ -3,19 +3,18 @@
 var isRunning : boolean;
 var isAttacking : boolean;
 var runToRight : boolean;
-//var playerControl : PlayerControl;
+var playerControl : PlayerControl;
 
 function Awake () {
 	isRunning = false;
 	isAttacking = false;
 }
 function Start () {
-/**
+
 	if(playerControl == null){
 		playerControl = GetComponent(PlayerControl) as PlayerControl;
 		Debug.Log(playerControl);
 	}
-**/
 }
 // Subscribe to events  
 function OnEnable(){  
@@ -36,18 +35,19 @@ function OnDestroy(){
 // Touch start event  
 function On_JoystickMoveEnd(move : MovingJoystick){
 	if (move.joystickName == "MoveJoystick"){
-		isRunning = false;
+		playerControl.isRunning = false;
+		Debug.Log("Ends");
 	}
 }
 
 function On_JoystickMove(move : MovingJoystick){
 	if (move.joystickName == "MoveJoystick"){
-		isRunning = true;
+		playerControl.isRunning = true;
 		if(move.joystickAxis.x>0){
-			runToRight = true;
+			playerControl.runToRight = true;
 		}
 		else if(move.joystickAxis.x<0){
-			runToRight = false;
+			playerControl.runToRight = false;
 		}
 	}
 }
